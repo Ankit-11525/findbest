@@ -1,0 +1,27 @@
+.navbarContainer{
+    /* border:2px solid blue; */
+    height: 80px;
+}
+.smallContainer{
+    padding: 10px;
+    border:2px solid rgb(85, 81, 84);
+    display: flex;
+    border-radius: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 25px;
+    align-items: center;
+    background-color: rgb(219, 215, 215);
+}
+.smallContainer button{
+    text-decoration: none;
+    width: 80px;
+    height: 40px;
+    border-radius: 9px;
+    background-color: rgb(38, 39, 38);
+}
+.smallContainer button a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: medium;
+}
