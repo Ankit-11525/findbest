@@ -5,10 +5,10 @@ const navbar = () => {
     <div>
       <div className="navbarContainer">
         <div className="smallContainer">
-          <h3>#FindBest</h3>
+          <h2>#FindBest</h2>
           <button>
             <a href="https://github.com" target="blank">
-              Github
+              <img src="github-logo.png" alt="GitHub Logo" />
             </a>
           </button>
         </div>
