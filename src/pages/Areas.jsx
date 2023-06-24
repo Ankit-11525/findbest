@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useState, useNavigate } from "react";
+import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 const Areas = () => {
   const [value, setValue] = useState("Area");
+  // const navigate = useNavigate();
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+  // const handleSubmit = (event) => {
+  //   navigate("/search-page",event.target.value);
+  // };
 
   return (
     <div>
@@ -20,7 +27,16 @@ const Areas = () => {
       </label>
 
       <p>Submit Button to confirm {value} for your product </p>
-
+      <Link
+          className="btn"
+          to={{
+            pathname: "/search-page",
+            value
+          }}
+        >
+          SUBMIT
+        </Link>
+      {/* <Button onClick={handleSubmit} text="SUBMIT..." /> */}
     </div>
   );
 };

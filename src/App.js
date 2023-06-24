@@ -7,6 +7,7 @@ import {
   Routes,
 } from "react-router-dom";
 import Areas from "./pages/Areas.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/areas" element={<Areas />} />
+        <Route path="/search-page" element={<SearchPage />} />
       </Routes>
     </Router>
   );
