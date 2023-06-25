@@ -35,9 +35,13 @@ const SearchPage = () => {
           <ul>
             {searchResults.map((result, index) => (
               <li key={index}>
-                <a href={result.url} target="_blank" rel="noopener noreferrer">
-                  {result.name}
+                <a href={result.medicineURL} target="_blank" rel="noopener noreferrer">
+                  {result.medicinename}
                 </a>
+                <div>{result.medicineqnty}</div>
+                <div>{result.medicinemrp}</div>
+                <div>{result.medicinenewPrice}</div>
+                <div>{result.medicinesavedPrice}</div>
               </li>
             ))}
           </ul>
