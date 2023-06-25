@@ -1,3 +1,4 @@
+import "./SearchcssPage.css"
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -17,7 +18,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div>
+    <div className="Container">
       <h1>Medicine Search</h1>
       <input
         type="text"
