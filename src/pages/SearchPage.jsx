@@ -1,7 +1,7 @@
 import "./SearchcssPage.css"
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Card from "../components/Card.jsx";
 const SearchPage = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -27,24 +27,25 @@ const SearchPage = () => {
         placeholder="Enter a medicine name"
       />
       <button onClick={handleSearch}>Search</button>
-
       <div>
-        {searchResults.length === 0 ? (
+        {searchResults.length === 1 ? (
           <p>No results found.</p>
         ) : (
-          <ul>
-            {searchResults.map((result, index) => (
-              <li key={index}>
-                <a href={result.medicineURL} target="_blank" rel="noopener noreferrer">
-                  {result.medicinename}
-                </a>
-                <div>{result.medicineqnty}</div>
-                <div>{result.medicinemrp}</div>
-                <div>{result.medicinenewPrice}</div>
-                <div>{result.medicinesavedPrice}</div>
-              </li>
-            ))}
-          </ul>
+          <div className="container">
+            {searchResults.map((singleresult) => {
+              if(singleresult===null) return <div>NO Results from Amazon(SERVER ERROR!)</div>;
+              return singleresult.map((result, index) => {
+                return <Card key={index} 
+                medicineURL={result.medicineURL} 
+                medicineName={result.medicineName}
+                medicineQnty={result.medicineQnty}
+                medicineMRP={result.medicineMRP}
+                medicineSavedPrice={result.medicineSavedPrice}
+                medicineNewPrice={result.medicineNewPrice}                
+                 />;
+              });
+            })}
+          </div>
         )}
       </div>
     </div>
