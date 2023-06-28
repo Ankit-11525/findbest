@@ -1,9 +1,8 @@
 const express = require("express");
-const axios = require("axios");
-const cheerio = require("cheerio");
 const cors = require("cors");
-const getmedicineAmazonDescription=require('./categories/MedicineWebsites/AmazonModule.js');
-const getmedicinepharmaDescription=require('./categories/MedicineWebsites/PharmaeasyModule.js');
+const getmedicineAmazonDescription=require('./Categories/MedicineWebsites/AmazonModule.js');
+const getmedicinepharmaDescription=require('./Categories/MedicineWebsites/PharmaeasyModule.js');
+const getmedicineApollopharmaDescription=require('./Categories/MedicineWebsites/ApolloPharmaModule.js');
 const app = express();
 const port = 5000;
 app.use(express.json());
@@ -26,10 +25,14 @@ app.get("/api/medicine/:name", async (req, res) => {
     const pharmeasyurl=`https://pharmeasy.in/search/all?name=${name}`;
     let result2=await getmedicinepharmaDescription(pharmeasyurl);
     // console.log(result2);
+    const Apollopharmaurl=`https://www.apollopharmacy.in/search-medicines/${name}`;
+    let result3=await getmedicineApollopharmaDescription(Apollopharmaurl);
 
 
     searchResults.push(result);
     searchResults.push(result2);
+    searchResults.push(result3);
+
     console.log(searchResults);
     res.json(searchResults);
   } catch (error) {

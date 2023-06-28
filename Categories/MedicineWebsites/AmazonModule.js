@@ -53,6 +53,7 @@ const getmedicineAmazonDescription = async (URL) => {
           .attr("src");
         // console.log(medicineIMG);
         let medicineSavedPrice=medicineMRP-medicineNewPrice;
+        let scrapFrom="Amazon.in";
         const SingleSearchResultArrForAmazonMedicine = {
           medicineName,
           medicineURL,
@@ -63,6 +64,7 @@ const getmedicineAmazonDescription = async (URL) => {
           // deliverydate,
           
           medicineIMG,
+          scrapFrom
         };
       //   console.log(SingleSearchResultArrForAmazonMedicine);
         SearchResultArrForAmazonMedicine.push(

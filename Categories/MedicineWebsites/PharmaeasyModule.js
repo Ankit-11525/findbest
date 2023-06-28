@@ -43,8 +43,9 @@ const getmedicineDescriptionPharmaHelper= async(URL)=>
     const $ = cheerio.load(html);
     
     // const medicineimagearr=$('.ClickableElement_clickable__ItKj2.ProductImageCarousel_clickableImg__YVeX_');
-    // const medicineimage=$(medicineimagearr[0]).find('img').attr('src');
-    // console.log("medicineimage : ",medicineimagearr);
+    // const medicineimagearr=$('.ProductImageCarousel_productImage__yzafa>span').find('img');
+    // const medicineIMG=$('.ClickableElement_clickable__ItKj2.ProductImageCarousel_clickableImg__YVeX_ .ProductImageCarousel_productImage__yzafa');
+    // console.log("medicineimage : ",medicineIMG);
     // console.log("medicineimagearr "+medicineimagearr.length);
 
 
@@ -74,7 +75,7 @@ const getmedicineDescriptionPharmaHelper= async(URL)=>
 
 
     const medicineURL=URL;
-
+    let scrapFrom="Pharmaeasy.in";
     const SingleMedicineDescription = {
       // medicineimagearr,
       medicineName,
@@ -82,7 +83,9 @@ const getmedicineDescriptionPharmaHelper= async(URL)=>
       medicineMRP,
       medicineNewPrice,
       medicineSavedPrice,
-      // medicineQnty,
+      scrapFrom,
+      // medicineIMG
+      medicineQnty,
     };
     // console.log(SingleMedicineDescription);
     return SingleMedicineDescription;

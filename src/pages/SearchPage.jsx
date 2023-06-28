@@ -35,7 +35,9 @@ const SearchPage = () => {
             {searchResults.map((singleresult) => {
               if(singleresult===null) return <div>NO Results from Amazon(SERVER ERROR!)</div>;
               return singleresult.map((result, index) => {
-                return <Card key={index} 
+                return <Card key={index}
+                medicineIMG={result.medicineIMG}
+                scrapFrom={result.scrapFrom} 
                 medicineURL={result.medicineURL} 
                 medicineName={result.medicineName}
                 medicineQnty={result.medicineQnty}
