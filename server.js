@@ -39,7 +39,7 @@ app.get("/api/medicine/:name", async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
-});
+});z
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
