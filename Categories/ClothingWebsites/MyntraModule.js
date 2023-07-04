@@ -12,7 +12,7 @@ const getClothesMyntra = async (URL) => {
 
     const elements = await page.$$(".product-base");
     let minLength = 6;
-    if(minLength > elements.length) minLength = elements.length
+    if (minLength > elements.length) minLength = elements.length;
     for (let i = 0; i < minLength; i++) {
       let image = null;
       const imageLink = await page.evaluate(
@@ -21,7 +21,9 @@ const getClothesMyntra = async (URL) => {
       );
       const arr = imageLink.split("src=");
       if (arr.length > 1) {
-        image = arr[1].split("class=")[0];
+        const img = arr[1].split("class=")[0];
+        const n = img.length
+        image = img.substring(1,n-2);
       }
       if (!image) continue;
 
@@ -61,7 +63,7 @@ const getClothesMyntra = async (URL) => {
     }
 
     await browser.close();
-    console.log(data.length);
+    console.log(data);
     return data;
   } catch (error) {
     console.log(error);

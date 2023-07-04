@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Card from "../components/Card.jsx";
-
+import MedicineCard from "../components/MedicineCard.jsx";
 
 const MedicalSeachPage = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -21,35 +20,42 @@ const MedicalSeachPage = () => {
   };
 
   return (
-    <div className="Container">
-      <h1>Medicine Search</h1>
+    <div className="min-h-[100vh] bg-amber-100 text-center">
+      <h1 className="text-3xl py-3">Medicine Search</h1>
       <input
         type="text"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         placeholder="Enter a medicine name"
+        className="text-lg rounded-md border m-5 bottom-2 border-amber-500 mr-3 p-2"
       />
-      <button onClick={handleSearch}>Search</button>
-      <div>
+      <button
+        className="text-lg text-white p-2 rounded-lg bg-amber-600"
+        onClick={handleSearch}
+      >
+        Search
+      </button>
+      <div className="mt-6">
         {searchResults.length === 1 ? (
           <p>No results found.</p>
         ) : (
-          <div className="container">
+          <div className="grid lg:grid-cols-4 lg:gap-3 md:grid-cols-2 md:gap-3">
             {searchResults.map((singleresult) => {
-              if (singleresult === null)
+              if (singleresult === null) {
                 return <div>NO Results from Amazon(SERVER ERROR!)</div>;
+              }
               return singleresult.map((result, index) => {
                 return (
-                  <Card
+                  <MedicineCard
                     key={index}
-                    medicineIMG={result.medicineIMG}
-                    scrapFrom={result.scrapFrom}
-                    medicineURL={result.medicineURL}
-                    medicineName={result.medicineName}
-                    medicineQnty={result.medicineQnty}
-                    medicineMRP={result.medicineMRP}
-                    medicineSavedPrice={result.medicineSavedPrice}
-                    medicineNewPrice={result.medicineNewPrice}
+                    medicineIMG={result?.medicineIMG}
+                    scrapFrom={result?.scrapFrom}
+                    medicineURL={result?.medicineURL}
+                    medicineName={result?.medicineName}
+                    medicineQnty={result?.medicineQnty}
+                    medicineMRP={result?.medicineMRP}
+                    medicineSavedPrice={result?.medicineSavedPrice}
+                    medicineNewPrice={result?.medicineNewPrice}
                   />
                 );
               });
