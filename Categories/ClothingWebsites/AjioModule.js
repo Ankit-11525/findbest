@@ -10,7 +10,10 @@ const getClothesAjio = async (URL) => {
 
     await page.setViewport({ width: 1080, height: 1024 });
     const elements = await page.$$(".item.rilrtl-products-list__item.item");
-    for (let i = 0; i < elements.length; i++) {
+
+    let minLength = 6;
+    if(minLength > elements.length) minLength = elements.length
+    for (let i = 0; i < minLength; i++) {
       const image = await page.evaluate(
         (el) =>
           el.querySelector("a > div > div > div > img").getAttribute("src"),
@@ -66,7 +69,7 @@ const getClothesAjio = async (URL) => {
 
     await browser.close();
     console.log(data.length);
-    console.log(data);
+    // console.log(data);
     return data;
   } catch (error) {
     console.log(error);

@@ -11,8 +11,10 @@ const getClothesSnapdeal = async (URL) => {
     await page.setViewport({ width: 1080, height: 1024 });
     const element = ".col-xs-6.favDp.product-tuple-listing.js-tuple";
     const elements = await page.$$(element);
-
-    for (let i = 0; i < elements.length; i++) {
+   
+    let minLength = 6;
+    if(minLength > elements.length) minLength = elements.length
+    for (let i = 0; i <  minLength; i++) {
       const image = await page.evaluate(
         (el) =>
           el
@@ -54,7 +56,7 @@ const getClothesSnapdeal = async (URL) => {
     }
 
     await browser.close();
-    console.log(data);
+    console.log(data.length);
     return data;
   } catch (error) {
     console.log(error);

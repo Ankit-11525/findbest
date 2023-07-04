@@ -11,8 +11,9 @@ const getClothesMyntra = async (URL) => {
     await page.setViewport({ width: 1080, height: 1024 });
 
     const elements = await page.$$(".product-base");
-
-    for (let i = 0; i < elements.length; i++) {
+    let minLength = 6;
+    if(minLength > elements.length) minLength = elements.length
+    for (let i = 0; i < minLength; i++) {
       let image = null;
       const imageLink = await page.evaluate(
         (el) => el.querySelector("a > .product-imageSliderContainer").innerHTML,
@@ -60,7 +61,7 @@ const getClothesMyntra = async (URL) => {
     }
 
     await browser.close();
-    console.log(data);
+    console.log(data.length);
     return data;
   } catch (error) {
     console.log(error);

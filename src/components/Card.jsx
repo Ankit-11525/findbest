@@ -1,5 +1,4 @@
 import React from "react";
-import "./Cardcss.css";
 // import medicineimage from 'Categories/Medicine/MedicineImage.png'
 const Card = ({
   scrapFrom,
@@ -13,7 +12,7 @@ const Card = ({
 }) => {
   // const medicineName={name};
   // const medicineURL={url};
-  console.log({medicineName},{medicineIMG});
+  console.log({ medicineName }, { medicineIMG });
   return (
     <div className="card">
       <div className="card-content">
@@ -21,12 +20,18 @@ const Card = ({
         <h2 className="card-title">{medicineName}</h2>
 
         {medicineIMG ? (
-          <img src={medicineIMG} alt="MedicineImage" width="200px" height="200px"/>
+          <img
+            src={medicineIMG}
+            alt="MedicineImage"
+            width="200px"
+            height="200px"
+          />
         ) : (
           <img
             src="https://img.freepik.com/premium-vector/pills-liquids-medicine-children-kawaii-doodle-flat-vector-illustration_609998-86.jpg?w=2000"
             alt="MedicineImage"
-            width="200px" height="200px"
+            width="200px"
+            height="200px"
           />
         )}
 
@@ -35,7 +40,7 @@ const Card = ({
             {medicineName}
           </a>
         </p>
-        
+
         <div> Quantity : {medicineQnty}</div>
         <div> MRP : {medicineMRP}</div>
         <div> DiscountPrice : {medicineNewPrice}</div>
