@@ -1,9 +1,9 @@
-
-
 import React, { useState } from "react";
 import axios from "axios";
 import Card from "../components/Card.jsx";
-const SearchPage = () => {
+
+
+const MedicalSeachPage = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -61,4 +61,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default MedicalSeachPage;

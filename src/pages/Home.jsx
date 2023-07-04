@@ -1,18 +1,17 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button.jsx";
-import "./Homecss.css";
+
 const Home = () => {
   const navigate = useNavigate();
 
   function startExplore() {
-    navigate("/areas");
+    navigate("/categories");
   }
   return (
-    <div className="HomeContainer">
-      <div className="getstart">
-        <Button onClick={startExplore} text="Get Started..." />
-      </div>
+    <div className="text-center bg-amber-600">
+      <button onClick={startExplore} className=" text-xl p-5 font-semibold bg-white my-64 rounded-2xl text-black hover:bg-slate-400">
+        Get Started...
+      </button>
     </div>
   );
 };
