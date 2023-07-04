@@ -17,24 +17,47 @@ let data = [];
   const elements = await page.$$(".product-base");
 
   for (let i = 0; i < elements.length; i++) {
- 
-    const img = await page.evaluate(el => el.querySelector('a > .product-imageSliderContainer').innerHTML, elements[i]);
- 
-    // images.forEach(image => {
-    //   const arr = image.split('src=');
-    //   if(arr.length > 1) console.log(arr[1].split('class=')[0]);
-    // })
+    const li = await page.evaluate(
+      (el) => el.querySelector("a").getAttribute("href"),
+      elements[i]
+    );
+    const link = `https://www.myntra.com/` + li;
 
+    const titleHead = await page.evaluate(
+      (el) => el.querySelector("a > .product-productMetaInfo > h3").textContent,
+      elements[i]
+    );
+    const titleTail = await page.evaluate(
+      (el) => el.querySelector("a > .product-productMetaInfo > h4").textContent,
+      elements[i]
+    );
+    const title = titleHead + " - " + titleTail;
 
+    const combinedPrice = await page.evaluate(
+      (el) =>
+        el.querySelector("a > .product-productMetaInfo > div > span")
+          .textContent,
+      elements[i]
+    );
+    const priceArr = combinedPrice.split("Rs. ");
+    const price = "Rs. " + priceArr[2];
+    const discountPrice = "Rs. " + priceArr[1];
+
+    const disct = parseInt(
+      ((+priceArr[2] - +priceArr[1]) * 100) / +priceArr[2]
+    );
+    const discount = `${disct}% Off`;
+    const imageLink = await page.evaluate(
+      (el) => el.querySelector("a > .product-imageSliderContainer").innerHTML,
+      elements[i]
+    );
+    const arr = imageLink.split("src=");
+    if (arr.length > 1) {
+      const image = arr[1].split("class=")[0];
+      data.push({ link, image, title, price, discountPrice, discount });
+    }
   }
+
   await browser.close();
-
-
-  
-
-  console.log(photos);
+  console.log(data);
 })();
-
-
-
-// for each link do scrapping again
