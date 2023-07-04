@@ -1,35 +1,65 @@
 // Ajio
 // This is ajio
 // TODO: Ajio data done, now can work on frontend and backend
+// const url = `https://www.ajio.com/search/?text=${name}`
+
 const puppeteer = require("puppeteer");
+let data = [];
 
 (async () => {
-  let links = [];
-
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
   await page.goto("https://www.ajio.com/search/?text=tshirt");
 
   await page.setViewport({ width: 1080, height: 1024 });
-  // const element = ".rilrtl-products-list__link"; //for links
-  const element = ".contentHolder"; //for data other than links
-  const elements = await page.$$(element);
-  const _links = await Promise.all(
-    // elements.map(async (el) => el.evaluate((el) => el.href)) // working for links
-    elements.map(async (el) => el.evaluate((el) => el.innerText)) //-->working fine all data other than links
-  );
+  const elements = await page.$$(".item.rilrtl-products-list__item.item");
+  for (let i = 0; i < elements.length; i++) {
+    const image = await page.evaluate(
+      (el) => el.querySelector("a > div > div > div > img").getAttribute("src"),
+      elements[i]
+    );
+    if (!image) continue;
 
-  if (_links.length) {
-    // If there are any links
-    _links.forEach((url) => {
-      // Loop through each link
-      links.push(url);
-      // Add the link to the links array
-    });
+    const li = await page.evaluate(
+      (el) => el.querySelector("a").getAttribute("href"),
+      elements[i]
+    );
+    const link = `https://www.ajio.com${li}`;
+
+    const brand = await page.evaluate(
+      (el) => el.querySelector("a > div > .contentHolder > div").textContent,
+      elements[i]
+    );
+
+    const title = brand + " - " + await page.evaluate(
+      (el) => el.querySelector("a > div > .contentHolder > .nameCls").textContent,
+      elements[i]
+    );
+
+    const discountPrice =  await page.evaluate(
+      (el) => el.querySelector("a > div > .contentHolder > div > span").textContent,
+      elements[i]
+    );
+
+    const price =  await page.evaluate(
+      (el) => el.querySelector("a > div > .contentHolder > div > div > span").textContent,
+      elements[i]
+    );
+
+    const discount =  await page.evaluate(
+      (el) => el.querySelector("a > div > .contentHolder > div > div > .discount").textContent,
+      elements[i]
+    );
+
+    // const pordArr = prodInfo.split("₹");
+    // const title = prod
+
+    data.push({ link, image, title, price, discountPrice, discount});
   }
 
-  console.log(links);
+  console.log(data.length);
+  console.log(data);
   await browser.close();
 })();
 

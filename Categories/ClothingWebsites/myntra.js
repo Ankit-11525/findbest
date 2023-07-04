@@ -1,5 +1,7 @@
 // This is myntra
 // TODO: now work on frontend and backend data is ready
+// const url = `https://www.myntra.com/${name}` //working fine
+
 const puppeteer = require("puppeteer");
 
 let data = [];
@@ -17,6 +19,17 @@ let data = [];
   const elements = await page.$$(".product-base");
 
   for (let i = 0; i < elements.length; i++) {
+    let image = null;
+    const imageLink = await page.evaluate(
+      (el) => el.querySelector("a > .product-imageSliderContainer").innerHTML,
+      elements[i]
+    );
+    const arr = imageLink.split("src=");
+    if (arr.length > 1) {
+      image = arr[1].split("class=")[0];
+    }
+    if (!image) continue;
+
     const li = await page.evaluate(
       (el) => el.querySelector("a").getAttribute("href"),
       elements[i]
@@ -47,15 +60,7 @@ let data = [];
       ((+priceArr[2] - +priceArr[1]) * 100) / +priceArr[2]
     );
     const discount = `${disct}% Off`;
-    const imageLink = await page.evaluate(
-      (el) => el.querySelector("a > .product-imageSliderContainer").innerHTML,
-      elements[i]
-    );
-    const arr = imageLink.split("src=");
-    if (arr.length > 1) {
-      const image = arr[1].split("class=")[0];
-      data.push({ link, image, title, price, discountPrice, discount });
-    }
+    data.push({ link, image, title, price, discountPrice, discount });
   }
 
   await browser.close();

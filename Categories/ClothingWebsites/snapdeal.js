@@ -4,7 +4,7 @@
 const puppeteer = require("puppeteer");
 
 let data = [];
-
+// const url = `https://www.snapdeal.com/search?keyword=${name}` //working fine
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
@@ -14,12 +14,13 @@ let data = [];
   );
 
   await page.setViewport({ width: 1080, height: 1024 });
-  const element = ".col-xs-6.favDp.product-tuple-listing.js-tuple"; //for href and image working fine
+  const element = ".col-xs-6.favDp.product-tuple-listing.js-tuple";
   const elements = await page.$$(element);
 
   for (let i = 0; i < elements.length; i++) {
-    const link = await page.evaluate(el => el.querySelector('.product-tuple-image > a').getAttribute('href'), elements[i]);
     const image = await page.evaluate(el => el.querySelector('.product-tuple-image > a > .picture-elem > .product-image').getAttribute('srcset'), elements[i]);
+    if(!image) continue;
+    const link = await page.evaluate(el => el.querySelector('.product-tuple-image > a').getAttribute('href'), elements[i]);
     const title = await page.evaluate(el => el.querySelector('.product-desc-rating > a > p').getAttribute('title'), elements[i]);
     const price = await page.evaluate(el => el.querySelector('.product-price-row.clearfix > div > span').textContent, elements[i]);
     const discountPrice = await page.evaluate(el => el.querySelector('.lfloat.product-price').textContent, elements[i]);
