@@ -3,9 +3,7 @@
 
 const puppeteer = require("puppeteer");
 
-let links = [];
-let images = [];
-let prodInfo = [];
+let data = [];
 
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
@@ -16,39 +14,21 @@ let prodInfo = [];
   );
 
   await page.setViewport({ width: 1080, height: 1024 });
-  const element = ".product-tuple-image"; //for href and image working fine
-  const dataEle = ".product-tuple-description";
+  const element = ".col-xs-6.favDp.product-tuple-listing.js-tuple"; //for href and image working fine
   const elements = await page.$$(element);
-  const data = await page.$$(dataEle);
-
 
   for (let i = 0; i < elements.length; i++) {
-    // const img = await elements[i].$eval(".picture-elem>source", (i) =>
-    //   i.getAttribute("srcset")
-    // );
-    const img = await page.evaluate(el => el.querySelector('.picture-elem>source').getAttribute('srcset'), elements[i]);
+    const link = await page.evaluate(el => el.querySelector('.product-tuple-image > a').getAttribute('href'), elements[i]);
+    const image = await page.evaluate(el => el.querySelector('.product-tuple-image > a > .picture-elem > .product-image').getAttribute('srcset'), elements[i]);
+    const title = await page.evaluate(el => el.querySelector('.product-desc-rating > a > p').getAttribute('title'), elements[i]);
+    const price = await page.evaluate(el => el.querySelector('.product-price-row.clearfix > div > span').textContent, elements[i]);
+    const discountPrice = await page.evaluate(el => el.querySelector('.lfloat.product-price').textContent, elements[i]);
+    const discount = await page.evaluate(el => el.querySelector('.product-discount > span').textContent, elements[i]);
 
-    const a = await elements[i].$eval("a", (i) => i.getAttribute("href"));
-    // links.push(a);
-    images.push(img);
+    data.push({link, image, title, price, discountPrice, discount});
   }
-  for (let i = 0; i < data.length; i++) {
-    const d = await data[i].$eval(".product-desc-rating>a", (i) => i.innerText);
-    prodInfo.push(d);
-  }
-  console.log(links.length);
-  // console.log(links);
-  console.log(images);
-  // console.log(prodInfo);
+ 
+  console.log(data);
 
   await browser.close();
 })();
-
-// const els = await page.$$("div.parent");
-
-// for (let i = 0; i < els.length; i++) {
-//     const img = await els[i].$eval('img', i => i.getAttribute('src'));
-//     console.log(img);
-//     const link = await els[i].$eval('a', a => a.getAttribute('href'));
-//     console.log(link);
-// }
