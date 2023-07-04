@@ -16,18 +16,20 @@ let prodInfo = [];
   );
 
   await page.setViewport({ width: 1080, height: 1024 });
-  const element = ".product-tuple-image"; //for href working fine
+  const element = ".product-tuple-image"; //for href and image working fine
   const dataEle = ".product-tuple-description";
   const elements = await page.$$(element);
   const data = await page.$$(dataEle);
 
 
   for (let i = 0; i < elements.length; i++) {
-    const img = await elements[i].$eval(".picture-elem>source", (i) =>
-      i.getAttribute("srcset")
-    );
+    // const img = await elements[i].$eval(".picture-elem>source", (i) =>
+    //   i.getAttribute("srcset")
+    // );
+    const img = await page.evaluate(el => el.querySelector('.picture-elem>source').getAttribute('srcset'), elements[i]);
+
     const a = await elements[i].$eval("a", (i) => i.getAttribute("href"));
-    links.push(a);
+    // links.push(a);
     images.push(img);
   }
   for (let i = 0; i < data.length; i++) {
@@ -35,9 +37,9 @@ let prodInfo = [];
     prodInfo.push(d);
   }
   console.log(links.length);
-  console.log(links);
+  // console.log(links);
   console.log(images);
-  console.log(prodInfo);
+  // console.log(prodInfo);
 
   await browser.close();
 })();

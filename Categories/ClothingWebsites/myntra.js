@@ -13,7 +13,7 @@ let links = [];
 
   await page.setViewport({ width: 1080, height: 1024 });
 //   const element = ".product-base>a"; //for href working fine
-  const element = ".product-base .product-productMetaInfo"; //for href working fine
+  const element = ".product-base .product-productMetaInfo"; //for data working fine
   //   const element = ".product-base .product-ratingsContainer span:not([class])"; //for rating
 
   const elements = await page.$$(element);
