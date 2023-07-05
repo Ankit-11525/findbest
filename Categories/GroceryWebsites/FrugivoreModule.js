@@ -10,10 +10,10 @@ const getGroceryFrugivoreDescription = async (URL) => {
 
     let itemlist = $(".col-lg-3.col-md-4.col-sm-6");
     // console.log(itemlist.length);
-    let minlength=10;
+    let minlength=12;
     if(minlength>=itemlist.length)
     {
-      minlength=itemlist.length
+      minlength=itemlist.length - itemlist.length%6;
     }
     for (let i = 0; i < minlength; i++) {
       // let groceryName = $(itemlist[i]).find(".d-block.text-blackish.weight500").text();
@@ -51,6 +51,9 @@ const getGroceryFrugivoreDescriptionHelper= async(URL)=>
     // console.log("medicineimagearr "+medicineimagearr.length);
 
 
+    const groceryIMG=$('.slideMainImg').find('img').attr('src');
+    // console.log("groceryIMG :"+groceryIMG);
+    // const medicineIMG=$('.image-gallery-slides').find('img').attr('src');
 
     const groceryName=$('.productDescHeading').text();
     // console.log("medicinename "+medicineName);
@@ -103,7 +106,7 @@ const getGroceryFrugivoreDescriptionHelper= async(URL)=>
 
 
     const SingleGroceryFrugivoreDescription = {
-      // medicineimagearr,
+      groceryIMG,
       groceryName,
       groceryURL,      
       groceryMRP,
