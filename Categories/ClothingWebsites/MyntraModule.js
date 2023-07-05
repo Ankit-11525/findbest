@@ -71,7 +71,8 @@ const getClothesMyntra = async (URL) => {
         ((+priceArr[2] - +priceArr[1]) * 100) / +priceArr[2]
       );
       const discount = `${disct}% Off`;
-      data.push({ link, image, title, price, discountPrice, discount });
+      const scrapFrom = "Myntra";
+      data.push({ link, image, title, price, discountPrice, discount, scrapFrom });
     }
 
     await browser.close();

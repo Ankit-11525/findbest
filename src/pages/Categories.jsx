@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useNavigate } from "react";
 import { Link } from "react-router-dom";
 
 const Areas = () => {

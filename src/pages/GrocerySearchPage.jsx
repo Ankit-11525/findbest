@@ -40,7 +40,7 @@ const GrocerySeachPage = () => {
           <p>No results found.</p>
         ) : (
           <div className="p-8">
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               {searchResults.map((singleresult) => {
                 if (singleresult === null) {
                   return <div>NO Results from Amazon(SERVER ERROR!)</div>;

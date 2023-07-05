@@ -68,11 +68,12 @@ const getClothesAjio = async (URL) => {
             .textContent,
         elements[i]
       );
+      const scrapFrom = "Ajio";
 
       // const pordArr = prodInfo.split("₹");
       // const title = prod
 
-      data.push({ link, image, title, price, discountPrice, discount });
+      data.push({ link, image, title, price, discountPrice, discount, scrapFrom });
     }
 
     await browser.close();
