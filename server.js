@@ -9,13 +9,15 @@ const getmedicineApollopharmaDescription = require("./Categories/MedicineWebsite
 const getClothesMyntra = require("./Categories/ClothingWebsites/MyntraModule.js");
 const getClothesAjio = require("./Categories/ClothingWebsites/AjioModule.js");
 const getClothesSnapdeal = require("./Categories/ClothingWebsites/SnapdealModule.js");
+// grocery
+const getGroceryFrugivoreDescription = require("./Categories/GroceryWebsites/FrugivoreModule.js");
 
 // middlewares
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const port = 5000;
+const port = 4000;
 // Define the API endpoint for medicine search
 app.get("/api/medicine/:name", async (req, res) => {
   const { name } = req.params;
@@ -65,6 +67,29 @@ app.get("/api/clothing/:name", async (req, res) => {
     searchResults.push(snapdealResult);
 
     // console.log(searchResults);
+    res.json(searchResults);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Define the API endpoint for grocery search
+app.get("/api/grocery/:name", async (req, res) => {
+  const { name } = req.params;
+
+  // console.log(name);
+
+  try {
+   
+    const searchResults = [];
+
+
+    const frugivoreurl=`https://frugivore.in/search?qf=${name}`;
+    let result=await getGroceryFrugivoreDescription(frugivoreurl);
+
+    searchResults.push(result);
+
     res.json(searchResults);
   } catch (error) {
     console.error(error);

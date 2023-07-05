@@ -10,7 +10,7 @@ const MedicalSeachPage = () => {
     try {
       console.log(searchInput);
       const response = await axios.get(
-        `http://localhost:5000/api/medicine/${searchInput}`
+        `http://localhost:4000/api/medicine/${searchInput}`
       );
       setSearchResults(response.data);
       console.log(response.data);

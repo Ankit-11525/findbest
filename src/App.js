@@ -6,6 +6,7 @@ import "./index.css";
 
 import MedicalSeachPage from "./pages/MedicalSeachPage";
 import ClothingSearchPage from "./pages/ClothingSearchPage";
+import GrocerySearchPage from "./pages/GrocerySearchPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/search-page/medical" element={<MedicalSeachPage />} />
         <Route path="/search-page/clothing" element={<ClothingSearchPage />} />
+        <Route path="/search-page/grocery" element={<GrocerySearchPage />} />
       </Routes>
     </Router>
   );
