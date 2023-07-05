@@ -22,6 +22,7 @@ const Areas = () => {
             <option value="select">Select Category</option>
             <option value="medical">Medical</option>
             <option value="clothing">Clothing</option>
+            <option value="grocery">Grocery</option>
           </select>
         </div>
       </div>
