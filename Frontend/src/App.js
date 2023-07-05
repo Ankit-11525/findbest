@@ -5,9 +5,9 @@ import Categories from "./pages/Categories.jsx";
 import SmartPhoneSearchPage from "./pages/SmartPhoneSearchPage.jsx"
 import "./index.css";
 
-import MedicalSeachPage from "./pages/MedicalSeachPage";
-import ClothingSearchPage from "./pages/ClothingSearchPage";
-import GrocerySearchPage from "./pages/GrocerySearchPage";
+import MedicalSeachPage from "./pages/MedicalSeachPage.jsx";
+import ClothingSearchPage from "./pages/ClothingSearchPage.jsx";
+import GrocerySearchPage from "./pages/GrocerySearchPage.jsx";
 
 function App() {
   return (

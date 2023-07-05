@@ -10,7 +10,7 @@ const SmartPhoneSearchPage = () => {
     try {
       console.log(searchInput);
       const response = await axios.get(
-        `http://localhost:4000/api/smartphone/${searchInput}`
+        ` https://backend-server-zeta.vercel.app/api/smartphone/${searchInput}`
       );
       setSearchResults(response.data);
       console.log(searchResults);

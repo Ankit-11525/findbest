@@ -10,7 +10,7 @@ const GrocerySeachPage = () => {
     try {
       console.log(searchInput);
       const response = await axios.get(
-        `http://localhost:4000/api/grocery/${searchInput}`
+        ` https://backend-server-zeta.vercel.app/api/grocery/${searchInput}`
       );
       setSearchResults(response.data);
       console.log(response.data);
