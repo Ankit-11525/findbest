@@ -11,6 +11,7 @@ const getClothesAjio = require("./Categories/ClothingWebsites/AjioModule.js");
 const getClothesSnapdeal = require("./Categories/ClothingWebsites/SnapdealModule.js");
 // grocery
 const getGroceryFrugivoreDescription = require("./Categories/GroceryWebsites/FrugivoreModule.js");
+const getelectronicdesc = require("./Categories/SmartPhonesWebsites/Gadget360Module.js");
 
 // middlewares
 const app = express();
@@ -90,6 +91,38 @@ app.get("/api/grocery/:name", async (req, res) => {
 
     searchResults.push(result);
 
+    res.json(searchResults);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+//smartphone
+
+app.get("/api/smartphone/:name", async (req, res) => {
+  const { name } = req.params;
+
+  //const ajioURL = `https://www.ajio.com/search/?text=${name}`;
+  // const myntraURL = `https://www.myntra.com/${name}`;
+  // const snapdealURL = `https://www.snapdeal.com/search?keyword=${name}`;
+  const smartphoneurl=`https://www.91mobiles.com/search_page.php?q=${name}`;
+
+  try {
+    const searchResults = [];
+
+    const smartphoneresult = await getelectronicdesc(smartphoneurl);
+    searchResults.push(smartphoneresult);
+    // const myntraResult = await getClothesMyntra(myntraURL);
+    // const ajioResult = await getClothesAjio(ajioURL);
+    // const snapdealResult = await getClothesSnapdeal(snapdealURL);
+
+    // searchResults.push(myntraResult);
+    // searchResults.push(ajioResult);
+    // searchResults.push(snapdealResult);
+
+    console.log(searchResults);
     res.json(searchResults);
   } catch (error) {
     console.error(error);
