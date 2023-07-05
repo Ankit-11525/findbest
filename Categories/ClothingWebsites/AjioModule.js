@@ -1,9 +1,17 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-extra");
+
+// Add stealth plugin and use defaults (all tricks to hide puppeteer usage)
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+puppeteer.use(StealthPlugin());
+
+// Add adblocker plugin to block all ads and trackers (saves bandwidth)
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
+puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 const getClothesAjio = async (URL) => {
   try {
     let data = [];
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
 
     await page.goto(URL);
@@ -12,7 +20,7 @@ const getClothesAjio = async (URL) => {
     const elements = await page.$$(".item.rilrtl-products-list__item.item");
 
     let minLength = 6;
-    if(minLength > elements.length) minLength = elements.length
+    if (minLength > elements.length) minLength = elements.length;
     for (let i = 0; i < minLength; i++) {
       const image = await page.evaluate(
         (el) =>
