@@ -49,6 +49,7 @@ const GrocerySeachPage = () => {
                   return (
                     <GroceryCard
                       key={index}
+                      scrapFrom={result?.scrapFrom}
                       groceryURL={result?.groceryURL}
                       groceryName={result?.groceryName}
                       groceryQnty={result?.groceryQnty}
