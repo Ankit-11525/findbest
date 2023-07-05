@@ -59,8 +59,8 @@ const getClothesSnapdeal = async (URL) => {
         (el) => el.querySelector(".product-discount > span").textContent,
         elements[i]
       );
-
-      data.push({ link, image, title, price, discountPrice, discount });
+        const scrapFrom = "Snapdeal";
+      data.push({ link, image, title, price, discountPrice, discount, scrapFrom });
     }
 
     await browser.close();
