@@ -1,6 +1,6 @@
 import React from "react";
 // import medicineimage from 'Categories/Medicine/MedicineImage.png'
-const Card = ({
+const MedicineCard = ({
   scrapFrom,
   medicineIMG,
   medicineName,
@@ -14,8 +14,8 @@ const Card = ({
   // const medicineURL={url};
   console.log({ medicineName }, { medicineIMG });
   return (
-    <div className="card">
-      <div className="card-content">
+    <div className="flex flex-col w-96 items-center p-2 border-2 border-amber-600">
+      <div className="items-center">
         <div>Medicines from {scrapFrom}</div>
         <h2 className="card-title">{medicineName}</h2>
 
@@ -53,4 +53,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default MedicineCard;
