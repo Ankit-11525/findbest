@@ -94,6 +94,7 @@ const getGroceryFrugivoreDescriptionHelper= async(URL)=>
 
     const groceryQnty=$('.col-lg-6>div>ul>li:first-of-type>label').text();
 
+    const scrapFrom="Frugivore";
 
 
 
@@ -110,6 +111,7 @@ const getGroceryFrugivoreDescriptionHelper= async(URL)=>
       grocerySavedPrice,
     //   groceryExpectedDate,
       groceryQnty,
+      scrapFrom,
     };
     // console.log(SingleGroceryDescription);
     return SingleGroceryFrugivoreDescription;
