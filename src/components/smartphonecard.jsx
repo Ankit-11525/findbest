@@ -1,6 +1,6 @@
 import React from "react";
 // import groceryimage from 'Categories/grocery/groceryImage.png'
-const smartphoneCard = ({
+const SmartPhoneCard = ({
   scrapFrom,
   name,
   fullURL,
@@ -12,13 +12,13 @@ const smartphoneCard = ({
 }) => {
   // const groceryName={name};
   // const groceryURL={url};
-  console.log({ name });
+  console.log("vineet"+{ name });
   return (
-    <div className="w-auto p-4 border-4 border-amber-500 rounded-lg bg-white shadow-2xl hover:shadow-none">
+    <div className="w-auto p-4 border-4 border-blue-500 rounded-lg bg-white shadow-2xl hover:shadow-none">
       <h2 className="card-title mb-2 font-bold text-xl text-sky-900">{name}</h2>
       <div className="flex flex-row">
 
-        <div className="w-2/5 border-r-2 border-amber-500">
+        <div className="w-2/5 border-r-2 border-blue-500">
           {image ? (
             <img
               src={image}
@@ -48,7 +48,7 @@ const smartphoneCard = ({
           <div> <span className="font-medium text-sky-900">Status :</span> {Status}</div>
           <div> <span className="font-medium text-sky-900">Ratings :</span> {Ratings}</div>
           <a href={fullURL} target="_blank" rel="noopener noreferrer">
-            <button className="card-button mt-1 text-white p-1 rounded-lg bg-amber-500 w-36">More in Detail</button>
+            <button className="card-button mt-1 text-white p-1 rounded-lg bg-blue-500 w-36">More in Detail</button>
           </a>
         </div>
       </div>
@@ -57,4 +57,4 @@ const smartphoneCard = ({
   );
 };
 
-export default smartphoneCard;
+export default SmartPhoneCard;

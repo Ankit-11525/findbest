@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import smartphoneCard from "../components/smartphonecard.jsx";
+import SmartPhoneCard from "../components/SmartPhoneCard.jsx";
 
 const SmartPhoneSearchPage = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -14,24 +14,23 @@ const SmartPhoneSearchPage = () => {
       );
       setSearchResults(response.data);
       console.log(searchResults);
-      //console.log(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
   return (
-    <div className="min-h-[100vh] bg-amber-100 text-center">
-      <h1 className="text-5xl font-bold pt-20 pb-5 text-amber-600">Smart Phone Search</h1>
+    <div className="min-h-[100vh] bg-blue-100 text-center">
+      <h1 className="text-5xl font-bold pt-20 pb-5 text-blue-600">Smart Phone Search</h1>
       <input
         type="text"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         placeholder="Enter a smartphone or tablet name"
-        className="text-lg rounded-md border m-5 bottom-2 border-amber-500 border-3 mr-3 px-5 py-2 w-1/3"
+        className="text-lg rounded-md border m-5 bottom-2 border-blue-500 border-3 mr-3 px-5 py-2 w-1/3"
       />
       <button
-        className="text-lg text-white p-2 rounded-lg bg-amber-600 w-40"
+        className="text-lg text-white p-2 rounded-lg bg-blue-600 w-40"
         onClick={handleSearch}
       >
         Search
@@ -50,9 +49,9 @@ const SmartPhoneSearchPage = () => {
 
                     // name,image,price,SPEC_SCORE,Status,Ratings,fullURL
                   return (
-                    <smartphoneCard
+                    <SmartPhoneCard
                       key={index}
-                      scrapFrom={"91mobiles.com"}
+                      scrapFrom={result?.scrapFrom}
                       fullURL={result?.fullURL}
                       name={result?.name}
                       image={result?.image}

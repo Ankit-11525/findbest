@@ -83,8 +83,8 @@ const getelectronicdesc = async (URL) => {
     SPEC_SCORE=SPEC_SCORE.trim();
     Status=Status.trim();
     Ratings=Ratings.trim();
-
-    data.push({name,image,price,SPEC_SCORE,Status,Ratings,fullURL});
+      const scrapFrom="91mobiles";
+    data.push({name,image,price,SPEC_SCORE,Status,Ratings,fullURL,scrapFrom});
   }
 
   //console.log(data)
