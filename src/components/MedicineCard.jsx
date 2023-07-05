@@ -14,41 +14,44 @@ const MedicineCard = ({
   // const medicineURL={url};
   console.log({ medicineName }, { medicineIMG });
   return (
-    <div className="flex flex-col w-96 items-center p-2 border-2 border-amber-600">
-      <div className="items-center">
-        <div>Medicines from {scrapFrom}</div>
-        <h2 className="card-title">{medicineName}</h2>
+    <div className="w-auto p-4 border-4 border-sky-900 rounded-lg bg-white shadow-2xl hover:shadow-none">
+      <div className="flex flex-row">
 
-        {medicineIMG ? (
-          <img
-            src={medicineIMG}
-            alt="MedicineImage"
-            width="200px"
-            height="200px"
-          />
-        ) : (
-          <img
-            src="https://img.freepik.com/premium-vector/pills-liquids-medicine-children-kawaii-doodle-flat-vector-illustration_609998-86.jpg?w=2000"
-            alt="MedicineImage"
-            width="200px"
-            height="200px"
-          />
-        )}
+        <div className="w-2/5 border-r-2 border-sky-700">
+          {medicineIMG ? (
+            <img
+              src={medicineIMG}
+              alt="MedicineImage"
+              width="200px"
+              height="200px"
+            />
+          ) : (
+            <img
+              src="https://img.freepik.com/premium-vector/pills-liquids-medicine-children-kawaii-doodle-flat-vector-illustration_609998-86.jpg?w=2000"
+              alt="MedicineImage"
+              width="200px"
+              height="200px"
+            />
+          )}
+        </div>
+        <div className="w-3/5 pt-2 ml-4 text-left">
+          <h2 className="card-title mb-2 font-bold text-xl text-sky-900">{medicineName}</h2>
+          {/* <p className="card-description">
+            <a href={medicineURL} target="_blank" rel="noopener noreferrer">
+              {medicineName}
+            </a>
+          </p> */}
 
-        <p className="card-description">
+          <div> <span className="font-medium text-sky-900">Quantity :</span> {medicineQnty}</div>
+          <div> <span className="font-medium text-sky-900">MRP :</span> {medicineMRP}</div>
+          <div> <span className="font-medium text-sky-900">DiscountPrice :</span> {medicineNewPrice}</div>
+          <div> <span className="font-medium text-sky-900">You Save :</span> {medicineSavedPrice}</div>
           <a href={medicineURL} target="_blank" rel="noopener noreferrer">
-            {medicineName}
+            <button className="card-button mt-1 text-white p-1 rounded-lg bg-sky-900 w-36">More in Detail</button>
           </a>
-        </p>
-
-        <div> Quantity : {medicineQnty}</div>
-        <div> MRP : {medicineMRP}</div>
-        <div> DiscountPrice : {medicineNewPrice}</div>
-        <div> You Save : {medicineSavedPrice}</div>
-        <a href={medicineURL} target="_blank" rel="noopener noreferrer">
-          <button className="card-button">More in Detail</button>
-        </a>
+        </div>
       </div>
+      <div className="font-bold pt-2 text-lg text-sky-900">Medicines from {scrapFrom}</div>
     </div>
   );
 };
