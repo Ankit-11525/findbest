@@ -1,15 +1,27 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-extra");
+
+// Add stealth plugin and use defaults (all tricks to hide puppeteer usage)
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+puppeteer.use(StealthPlugin());
+
+// Add adblocker plugin to block all ads and trackers (saves bandwidth)
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
+puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
+
 
 const getClothesMyntra = async (URL) => {
   try {
     let data = [];
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
 
-    await page.goto(URL);
+    await page.goto(URL, { waitUntil: "domcontentloaded" });
+    const ua =
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36";
+    await page.setUserAgent(ua);
 
-    await page.setViewport({ width: 1080, height: 1024 });
-
+    // await page.setViewport({ width: 1080, height: 1024 });
+    await page.waitForSelector(".product-base");
     const elements = await page.$$(".product-base");
     let minLength = 6;
     if (minLength > elements.length) minLength = elements.length;
@@ -22,8 +34,8 @@ const getClothesMyntra = async (URL) => {
       const arr = imageLink.split("src=");
       if (arr.length > 1) {
         const img = arr[1].split("class=")[0];
-        const n = img.length
-        image = img.substring(1,n-2);
+        const n = img.length;
+        image = img.substring(1, n - 2);
       }
       if (!image) continue;
 

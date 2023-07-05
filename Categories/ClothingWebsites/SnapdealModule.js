@@ -1,9 +1,17 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-extra");
+
+// Add stealth plugin and use defaults (all tricks to hide puppeteer usage)
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+puppeteer.use(StealthPlugin());
+
+// Add adblocker plugin to block all ads and trackers (saves bandwidth)
+const AdblockerPlugin = require("puppeteer-extra-plugin-adblocker");
+puppeteer.use(AdblockerPlugin({ blockTrackers: true }));
 
 const getClothesSnapdeal = async (URL) => {
   try {
     const data = [];
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
 
     await page.goto(URL);
@@ -11,10 +19,10 @@ const getClothesSnapdeal = async (URL) => {
     await page.setViewport({ width: 1080, height: 1024 });
     const element = ".col-xs-6.favDp.product-tuple-listing.js-tuple";
     const elements = await page.$$(element);
-   
+
     let minLength = 6;
-    if(minLength > elements.length) minLength = elements.length
-    for (let i = 0; i <  minLength; i++) {
+    if (minLength > elements.length) minLength = elements.length;
+    for (let i = 0; i < minLength; i++) {
       const image = await page.evaluate(
         (el) =>
           el
