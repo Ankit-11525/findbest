@@ -2,6 +2,7 @@ import Home from "./pages/Home.jsx";
 import Navbar from "./components/Navbar.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Categories from "./pages/Categories.jsx";
+import SmartPhoneSearchPage from "./pages/SmartPhoneSearchPage.jsx"
 import "./index.css";
 
 import MedicalSeachPage from "./pages/MedicalSeachPage";
@@ -18,6 +19,7 @@ function App() {
         <Route path="/search-page/medical" element={<MedicalSeachPage />} />
         <Route path="/search-page/clothing" element={<ClothingSearchPage />} />
         <Route path="/search-page/grocery" element={<GrocerySearchPage />} />
+        <Route path="/search-page/smartphone" element={<SmartPhoneSearchPage />} />
       </Routes>
     </Router>
   );
