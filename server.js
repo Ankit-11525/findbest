@@ -122,7 +122,7 @@ app.get("/api/smartphone/:name", async (req, res) => {
     // searchResults.push(ajioResult);
     // searchResults.push(snapdealResult);
 
-    console.log(searchResults);
+    // console.log(searchResults);
     res.json(searchResults);
   } catch (error) {
     console.error(error);
