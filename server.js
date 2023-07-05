@@ -25,8 +25,8 @@ app.get("/api/medicine/:name", async (req, res) => {
   try {
     const searchResults = [];
 
-    const URL = `https://www.amazon.in/s?k=${name}&i=hpc&crid=1OSR6C5KJ804W&sprefix=aciloc%2Chpc%2C195&ref=nb_sb_noss_2`;
-    let result = await getmedicineAmazonDescription(URL);
+    // const URL = `https://www.amazon.in/s?k=${name}&i=hpc&crid=1OSR6C5KJ804W&sprefix=aciloc%2Chpc%2C195&ref=nb_sb_noss_2`;
+    // let result = await getmedicineAmazonDescription(URL);
     // console.log(result);
 
     const pharmeasyurl = `https://pharmeasy.in/search/all?name=${name}`;
@@ -35,7 +35,7 @@ app.get("/api/medicine/:name", async (req, res) => {
     const Apollopharmaurl = `https://www.apollopharmacy.in/search-medicines/${name}`;
     let result3 = await getmedicineApollopharmaDescription(Apollopharmaurl);
 
-    searchResults.push(result);
+    // searchResults.push(result);
     searchResults.push(result2);
     searchResults.push(result3);
 

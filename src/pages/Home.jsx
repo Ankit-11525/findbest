@@ -8,8 +8,8 @@ const Home = () => {
     navigate("/categories");
   }
   return (
-    <div className="text-center bg-amber-600">
-      <button onClick={startExplore} className=" text-xl p-5 font-semibold bg-white my-64 rounded-2xl text-black hover:bg-slate-400">
+    <div className="text-center bg-stone-300 h-screen" >
+      <button onClick={startExplore} className="text-2xl p-5 font-semibol bg-sky-600  my-64 rounded-full text-white hover:bg-sky-900 w-1/4">
         Get Started...
       </button>
     </div>

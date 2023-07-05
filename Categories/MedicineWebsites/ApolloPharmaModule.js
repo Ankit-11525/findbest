@@ -10,7 +10,7 @@ const getmedicineApollopharmaDescription = async (URL) => {
 
     let itemlist = $(".ProductCard_productCardGrid__ZQBc1");
     // console.log(itemlist.length);
-    let minlength=5;
+    let minlength=12;
     if(minlength>=itemlist.length)
     {
       minlength=itemlist.length

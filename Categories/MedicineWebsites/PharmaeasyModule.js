@@ -10,7 +10,7 @@ const getmedicinepharmaDescription = async (URL) => {
 
     let itemlist = $(".Search_medicineLists__hM5Hk");
     // console.log(itemlist.length);
-    let minlength=5;
+    let minlength=12;
     if(minlength>=itemlist.length)
     {
       minlength=itemlist.length
