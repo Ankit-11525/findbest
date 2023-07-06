@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import GroceryCard from "../components/GroceryCard.jsx";
+import {API} from "../backend.js"
 
 const GrocerySeachPage = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -10,7 +11,7 @@ const GrocerySeachPage = () => {
     try {
       console.log(searchInput);
       const response = await axios.get(
-        ` https://backend-server-zeta.vercel.app/api/grocery/${searchInput}`
+        `${API}/api/grocery/${searchInput}`
       );
       setSearchResults(response.data);
       console.log(response.data);

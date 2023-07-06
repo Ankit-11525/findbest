@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import ClothingCard from "../components/ClothingCard.jsx";
-
+import {API} from "../backend.js"
 const ClothingSearchPage = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -10,7 +10,7 @@ const ClothingSearchPage = () => {
     try {
       console.log(searchInput);
       const response = await axios.get(
-        ` https://backend-server-zeta.vercel.app/api/clothing/${searchInput}`
+        `${API}/api/clothing/${searchInput}`
       );
       setSearchResults(response.data);
       console.log(response.data);

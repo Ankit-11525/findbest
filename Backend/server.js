@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 
+require('dotenv').config({ path: require('find-config')('.env') });
 // medicine
 const getmedicineAmazonDescription = require("./Categories/MedicineWebsites/AmazonModule.js");
 const getmedicinepharmaDescription = require("./Categories/MedicineWebsites/PharmaeasyModule.js");
@@ -18,12 +19,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const port = 4000;
+const port = process.env.PORT;
 // Define the API endpoint for medicine search
 app.get("/api/medicine/:name", async (req, res) => {
   const { name } = req.params;
 
   try {
+    console.log("name : "+name);
     const searchResults = [];
 
     // const URL = `https://www.amazon.in/s?k=${name}&i=hpc&crid=1OSR6C5KJ804W&sprefix=aciloc%2Chpc%2C195&ref=nb_sb_noss_2`;
